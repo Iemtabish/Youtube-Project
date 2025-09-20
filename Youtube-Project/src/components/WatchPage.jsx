@@ -5,6 +5,7 @@ import { closemenu } from "../../utils.jsx/AppSlice";
 import { GOOGLE_API_KEY } from "../../utils.jsx/constants";
 import RelatedVideos from "./RelatedVideos"; 
 import CommentsContainer from "./CommentsContainer";
+import LiveChat from "./LiveChat";
 
 const VIDEO_DETAILS_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=";
 
@@ -17,9 +18,10 @@ const WatchPage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(closemenu());
+    dispatch(closemenu()); //Video play hone pe sidebar close hoga
+
     if (videoId) {
-      getVideoDetails();
+      getVideoDetails(); //agar clicked video ki VIDEO'ID hai then us video ki details show hgi
     }
   }, [videoId]);
 
@@ -29,7 +31,7 @@ const WatchPage = () => {
     setVideoDetails(json.items[0]);
   };
 
-  // Improved view count formatting to match YouTube exactly
+  
   const formatViews = (views) => {
     const num = parseInt(views);
     if (num >= 1000000000) {
@@ -44,7 +46,7 @@ const WatchPage = () => {
     return num.toLocaleString() + " views";
   };
 
-  // Improved like count formatting
+
   const formatLikes = (likes) => {
     const num = parseInt(likes);
     if (num >= 1000000) {
@@ -111,17 +113,19 @@ const WatchPage = () => {
             className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-lg"
             src={"https://www.youtube.com/embed/" + videoId}
             title="YouTube video player"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
+          <div>
+            <LiveChat/>
+          </div>
 
           {/* Video Title */}
           <h1 className="font-bold text-xl lg:text-2xl mt-4 text-gray-900 leading-tight">
             {title}
           </h1>
-
+    
           {/* Video Stats and Actions */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-3 gap-4">
             <div className="flex items-center">
