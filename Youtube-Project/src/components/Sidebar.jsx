@@ -72,7 +72,7 @@ const Sidebar = () => {
         <p className="text-sm">
           Sign in to like videos, comment, and subscribe.
         </p>
-        <button className="flex items-center text-blue-500 border border-blue-500 rounded-full px-4 py-1 mt-2">
+        <a href="https://accounts.google.com/" target="blank" className="flex items-center text-blue-500 border border-blue-500 rounded-full px-4 py-1 mt-2">
           <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
@@ -81,7 +81,7 @@ const Sidebar = () => {
             />
           </svg>
           Sign in
-        </button>
+        </a>
       </div>
       <hr className="my-4" />
 
